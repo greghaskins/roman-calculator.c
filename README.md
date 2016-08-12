@@ -1,6 +1,8 @@
 # roman-calculator.c
 Code exercise in C: doing math with Roman numerals
 
+[![Build Status](https://travis-ci.org/greghaskins/roman-calculator.c.svg?branch=master)](https://travis-ci.org/greghaskins/roman-calculator.c)
+
 ## Build Environment
 
 - Ubuntu 14.04
