@@ -1,8 +1,10 @@
 #include <check.h>
 
+#include "../src/roman_calculator.h"
+
 START_TEST(one_and_one_is_two)
 {
-	ck_assert_int_eq(1, 2);	
+	ck_assert_str_eq("II", roman_calculator_add("I", "I"));
 }
 END_TEST
 
