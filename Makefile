@@ -5,12 +5,12 @@ check: run_tests
 	${CURDIR}/run_tests
 
 run_tests: ${CURDIR}/tests/run_tests.c $(OBJECTS)
-	gcc -Wall -MMD -o $@ $< $(CHECK_LIBS) $(OBJECTS)
+	gcc -Wall -MMD -coverage -o $@ $< $(CHECK_LIBS) $(OBJECTS)
 
 %.o: ${CURDIR}/src/%.c
-	gcc -Wall -MMD -o $@ -c $<
+	gcc -Wall -MMD -coverage -o $@ -c $<
 
 -include *.d
 
 clean:
-	rm -f run_tests *.o *.d
+	git clean -dXf

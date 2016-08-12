@@ -37,3 +37,8 @@
 
 # Project binaries
 run_tests
+
+# Coverage results
+*.gcov
+*.gcno
+*.gcda
