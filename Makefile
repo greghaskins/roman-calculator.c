@@ -1,12 +1,12 @@
 CHECK_LIBS = -pthread -lcheck_pic -lrt -lm
 
-all: check
+check: check_main
+	${CURDIR}/check_main
 
-check: check_roman
-	./check_roman
+check_main: ${CURDIR}/tests/check_main.c
+	gcc -Wall -MMD -o $@ $< $(CHECK_LIBS)
 
-check_roman: check_roman.c
-	gcc -o $@ $< $(CHECK_LIBS)
+-include *.d
 
 clean:
-	rm -f check_roman *.o
+	rm -f check_main *.o *.d

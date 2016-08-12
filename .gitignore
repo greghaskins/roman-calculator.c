@@ -32,5 +32,8 @@
 *.dSYM/
 *.su
 
+# Makefile dependencies
+*.d
+
 # Project binaries
-check_roman
+check_main
