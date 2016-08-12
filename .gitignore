@@ -36,4 +36,4 @@
 *.d
 
 # Project binaries
-check_main
+run_tests

@@ -1,10 +1,10 @@
 OBJECTS = roman_calculator.o
 CHECK_LIBS = -pthread -lcheck_pic -lrt -lm
 
-check: check_main
-	${CURDIR}/check_main
+check: run_tests
+	${CURDIR}/run_tests
 
-check_main: ${CURDIR}/tests/check_main.c $(OBJECTS)
+run_tests: ${CURDIR}/tests/run_tests.c $(OBJECTS)
 	gcc -Wall -MMD -o $@ $< $(CHECK_LIBS) $(OBJECTS)
 
 %.o: ${CURDIR}/src/%.c
@@ -13,4 +13,4 @@ check_main: ${CURDIR}/tests/check_main.c $(OBJECTS)
 -include *.d
 
 clean:
-	rm -f check_main *.o *.d
+	rm -f run_tests *.o *.d
