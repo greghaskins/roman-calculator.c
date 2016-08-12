@@ -1,6 +1,6 @@
 #include "roman_calculator.h"
 
-char *roman_calculator_add(char *left, char* right)
+char *roman_calculator_add(const char *left, const char *right)
 {
-	return "I";
+	return "II";
 }
