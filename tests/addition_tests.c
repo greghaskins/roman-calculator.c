@@ -1,14 +1,24 @@
+#include <stdlib.h>
 #include <check.h>
 
 #include "../src/roman_calculator.h"
 
+void verify_addition(const char *left, const char *right, const char *expected_result) {
+	char *actual_result = roman_calculator_add(left, right);
+	ck_assert_msg(
+			strcmp(expected_result, actual_result) == 0,
+			"%s + %s: expected %s, but was %s",
+			left, right, expected_result, actual_result);	       
+	free(actual_result);
+}
+
 START_TEST(can_add_by_simple_repetition)
 {
-	ck_assert_str_eq("II", roman_calculator_add("I", "I"));
-	ck_assert_str_eq("III", roman_calculator_add("I", "II"));
-	ck_assert_str_eq("XXX", roman_calculator_add("XX", "X"));
-	ck_assert_str_eq("CC", roman_calculator_add("C", "C"));
-	ck_assert_str_eq("MMM", roman_calculator_add("M", "MM"));
+	verify_addition("I", "I", "II");
+	verify_addition("I", "II", "III");
+	verify_addition("XX", "X", "XXX");
+	verify_addition("C", "C", "CC");
+	verify_addition("M", "MM", "MMM");
 }
 END_TEST
 
