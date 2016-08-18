@@ -22,9 +22,19 @@ START_TEST(can_add_by_simple_repetition)
 }
 END_TEST
 
+START_TEST(can_add_by_concatenation)
+{
+	verify_addition("X", "I", "XI");
+	verify_addition("MCX", "XV", "MCXXV");
+	verify_addition("DCI", "II", "DCIII");
+	verify_addition("LX", "XVI", "LXXVI");
+}
+END_TEST
+
 TCase *addition_tests()
 {
 	TCase *test_case = tcase_create("addition tests");
 	tcase_add_test(test_case, can_add_by_simple_repetition);
+	tcase_add_test(test_case, can_add_by_concatenation);
 	return test_case;
 }
