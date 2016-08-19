@@ -14,9 +14,16 @@ START_TEST(can_convert_single_numerals)
 }
 END_TEST
 
+START_TEST(null_string_is_an_error_so_return_minus_one)
+{
+	ck_assert_int_eq(roman_convert_to_int(NULL), -1);
+}
+END_TEST
+
 TCase *conversion_to_int_tests()
 {
 	TCase *test_case = tcase_create("conversion to int");
 	tcase_add_test(test_case, can_convert_single_numerals);
+	tcase_add_test(test_case, null_string_is_an_error_so_return_minus_one);
 	return test_case;
 }

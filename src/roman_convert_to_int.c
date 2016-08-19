@@ -4,6 +4,10 @@
 
 int roman_convert_to_int(const char *numeral)
 {
+	if (!numeral)
+	{
+		return -1;
+	}
 	const char first_letter = *numeral;
 	switch (first_letter)
 	{
