@@ -4,11 +4,7 @@
 
 int roman_convert_to_int(const char *numeral)
 {
-	if (!numeral)
-	{
-		return -1;
-	}
-	const char first_letter = *numeral;
+	const char first_letter = numeral ? *numeral : '?';
 	switch (first_letter)
 	{
 		case 'I':
