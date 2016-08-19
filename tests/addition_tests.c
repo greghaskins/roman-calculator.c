@@ -31,10 +31,20 @@ START_TEST(can_add_by_concatenation)
 }
 END_TEST
 
+
+START_TEST(addition_is_commutative)
+{
+	verify_addition("X", "I", "XI");
+	verify_addition("I", "X", "XI");
+}
+END_TEST
+
+
 TCase *addition_tests()
 {
 	TCase *test_case = tcase_create("addition tests");
 	tcase_add_test(test_case, can_add_by_simple_repetition);
 	tcase_add_test(test_case, can_add_by_concatenation);
+	/* PENDING */ (void) addition_is_commutative;
 	return test_case;
 }
