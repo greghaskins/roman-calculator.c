@@ -2,10 +2,28 @@
 
 #include "roman_convert_to_int.h"
 
+static int letter_to_int(const char letter);
+
 int roman_convert_to_int(const char *numeral)
 {
-	const char first_letter = numeral ? *numeral : '?';
-	switch (first_letter)
+	if (!numeral)
+	{
+		return -1;
+	}
+
+	const int length = strlen(numeral);
+	int total = 0;
+	for (int i = 0; i < length; i++)
+	{
+		char letter = numeral[i];
+		total += letter_to_int(letter);
+	}
+	return total;
+}
+
+static int letter_to_int(const char letter)
+{
+	switch (letter)
 	{
 		case 'I':
 			return 1;
@@ -25,4 +43,3 @@ int roman_convert_to_int(const char *numeral)
 			return -1;
 	}
 }
-
