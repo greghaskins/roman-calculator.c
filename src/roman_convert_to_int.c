@@ -2,20 +2,21 @@
 
 #include "roman_convert_to_int.h"
 
+static const int ERROR = -1;
+
 static int letter_to_int(const char letter);
 
 int roman_convert_to_int(const char *numeral)
 {
-	if (!numeral)
-	{
-		return -1;
-	}
+	if (!numeral) return ERROR;
 
 	const int length = strlen(numeral);
 	int total = 0;
 	for (int i = 0; i < length; i++)
 	{
 		char letter = numeral[i];
+		int value = letter_to_int(letter);
+		if (value == ERROR) return ERROR;
 		total += letter_to_int(letter);
 	}
 	return total;
@@ -40,6 +41,6 @@ static int letter_to_int(const char letter)
 		case 'M':
 			return 1000;
 		default:
-			return -1;
+			return ERROR;
 	}
 }
