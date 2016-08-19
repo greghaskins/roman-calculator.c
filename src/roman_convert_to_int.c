@@ -24,8 +24,9 @@ int roman_convert_to_int(const char *numeral)
 		case 'D':
 			return 500;
 		case 'M':
-		default:
 			return 1000;
+		default:
+			return -1;
 	}
 }
 
