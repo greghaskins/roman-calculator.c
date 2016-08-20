@@ -32,11 +32,19 @@ START_TEST(numbers_less_than_one_are_an_error)
 }
 END_TEST
 
+START_TEST(numbers_greater_than_maximum_possible_3999_are_an_error)
+{
+	verify_from_int(4000, "overflow error");
+	verify_from_int(4001, "overflow error");
+	verify_from_int(9345637, "overflow error");
+}
+END_TEST
 
 TCase *conversion_from_int_tests()
 {
 	TCase *test_case = tcase_create("conversion from int");
 	tcase_add_test(test_case, can_convert_numbers_with_single_numeral);
 	tcase_add_test(test_case, numbers_less_than_one_are_an_error);
+	tcase_add_test(test_case, numbers_greater_than_maximum_possible_3999_are_an_error);
 	return test_case;
 }
