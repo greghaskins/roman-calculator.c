@@ -2,6 +2,7 @@
 
 #include "addition_tests.c"
 #include "conversion_to_int_tests.c"
+#include "conversion_from_int_tests.c"
 
 int main(void)
 {
@@ -9,6 +10,7 @@ int main(void)
 	
 	suite_add_tcase(suite, addition_tests());
 	suite_add_tcase(suite, conversion_to_int_tests());
+	suite_add_tcase(suite, conversion_from_int_tests());
 	
 	SRunner *runner = srunner_create(suite);
 	srunner_run_all(runner, CK_NORMAL);
