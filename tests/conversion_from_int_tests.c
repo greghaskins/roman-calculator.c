@@ -15,6 +15,7 @@ static void verify_from_int(const int input, const char *expected_result)
 START_TEST(can_convert_numbers_with_single_numeral)
 {
 	verify_from_int(1, "I");
+	verify_from_int(5, "V");
 }
 END_TEST
 

@@ -7,6 +7,5 @@
 char *roman_convert_from_int(const int number)
 {
 	char *result = malloc(2);
-	strcpy(result, "I");
-	return number ? result : result;
+	return number < 5 ? strcpy(result, "I") : strcpy(result, "V");
 }
