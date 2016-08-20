@@ -16,6 +16,7 @@ START_TEST(can_convert_numbers_with_single_numeral)
 {
 	verify_from_int(1, "I");
 	verify_from_int(5, "V");
+	verify_from_int(10, "X");
 }
 END_TEST
 
