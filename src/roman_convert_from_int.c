@@ -7,6 +7,8 @@
 char *roman_convert_from_int(const int number)
 {
 	char *result = calloc(2, sizeof(char));
+	if (number < 1) strcat(result, "underflow error");
+
 	if (number == 1000) strcat(result, "M");
 	if (number == 500) strcat(result, "D");
 	if (number == 100) strcat(result, "C");

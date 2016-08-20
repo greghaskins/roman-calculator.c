@@ -24,10 +24,19 @@ START_TEST(can_convert_numbers_with_single_numeral)
 }
 END_TEST
 
+START_TEST(numbers_less_than_one_are_an_error)
+{
+	verify_from_int(0, "underflow error");
+	verify_from_int(-1, "underflow error");
+	verify_from_int(-435745, "underflow error");
+}
+END_TEST
+
 
 TCase *conversion_from_int_tests()
 {
 	TCase *test_case = tcase_create("conversion from int");
 	tcase_add_test(test_case, can_convert_numbers_with_single_numeral);
+	tcase_add_test(test_case, numbers_less_than_one_are_an_error);
 	return test_case;
 }
