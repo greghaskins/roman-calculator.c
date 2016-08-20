@@ -6,9 +6,9 @@
 
 char *roman_convert_from_int(const int number)
 {
-	char *result = malloc(2);
-	if (number == 1) strcpy(result, "I");
-	if (number == 5) strcpy(result, "V");
-	if (number == 10) strcpy(result, "X");
+	char *result = calloc(2, sizeof(char));
+	if (number == 10) strcat(result, "X");
+	if (number == 5) strcat(result, "V");
+	if (number == 1) strcat(result, "I");
 	return result;
 }
