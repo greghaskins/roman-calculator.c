@@ -4,18 +4,33 @@
 
 #include "roman_convert_from_int.h"
 
+typedef struct RomanLetters {
+	int value;
+	char letters[3];
+} RomanLetters;
+
+static const RomanLetters ROMAN_LETTERS[] = {
+	{ 1000, "M" },
+	{ 500, "D" },
+	{ 100, "C" },
+	{ 50, "L" },
+	{ 10, "X" },
+	{ 5, "V" },
+	{ 1, "I" }
+};
+static const int ROMAN_LETTERS_LENGTH = sizeof(ROMAN_LETTERS) / sizeof(RomanLetters);
+
+
 char *roman_convert_from_int(const int number)
 {
 	char *result = calloc(2, sizeof(char));
 	if (number < 1) strcat(result, "underflow error");
 	if (3999 < number) strcat(result, "overflow error");
 
-	if (number == 1000) strcat(result, "M");
-	if (number == 500) strcat(result, "D");
-	if (number == 100) strcat(result, "C");
-	if (number == 50) strcat(result, "L");
-	if (number == 10) strcat(result, "X");
-	if (number == 5) strcat(result, "V");
-	if (number == 1) strcat(result, "I");
+	for (int i = 0; i < ROMAN_LETTERS_LENGTH; i++)
+	{
+		const RomanLetters entry = ROMAN_LETTERS[i];
+		if (number == entry.value) strcat(result, entry.letters);
+	}
 	return result;
 }
