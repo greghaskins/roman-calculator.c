@@ -17,6 +17,10 @@ START_TEST(can_convert_numbers_with_single_numeral)
 	verify_from_int(1, "I");
 	verify_from_int(5, "V");
 	verify_from_int(10, "X");
+	verify_from_int(50, "L");
+	verify_from_int(100, "C");
+	verify_from_int(500, "D");
+	verify_from_int(1000, "M");
 }
 END_TEST
 
