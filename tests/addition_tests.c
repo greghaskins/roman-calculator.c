@@ -50,6 +50,13 @@ START_TEST(adding_smaller_numerals_consolidates_into_larger_numeral)
 }
 END_TEST
 
+START_TEST(reports_errors_from_invalid_input)
+{
+	verify_addition("wat", "I", "invalid input");
+	verify_addition("XVI", "$%7", "invalid input");
+}
+END_TEST
+
 
 TCase *addition_tests()
 {
@@ -58,5 +65,6 @@ TCase *addition_tests()
 	tcase_add_test(test_case, can_add_by_concatenation);
 	tcase_add_test(test_case, addition_is_commutative);
 	tcase_add_test(test_case, adding_smaller_numerals_consolidates_into_larger_numeral);
+	tcase_add_test(test_case, reports_errors_from_invalid_input);
 	return test_case;
 }
