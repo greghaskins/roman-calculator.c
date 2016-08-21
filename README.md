@@ -22,3 +22,16 @@ Then you can run the build and tests with:
 ```sh
 make
 ```
+
+## API and Examples
+
+The `roman_calculator` library provides a way to add roman numerals together. Input and output are given as `char *` null-terminated strings. The rules for roman numerals are as described [here](http://codingdojo.org/cgi-bin/index.pl?KataRomanCalculator)
+
+```c
+#include "roman_calculator.h"
+
+char *sum1 = roman_calculator_add("I", "I"); // -> "II"
+char *sum2 = roman_calculator_add("XXXI", "MXXVI"); // -> "MLVII"
+```
+
+See [tests/addition_tests.c]() for more detailed examples.
