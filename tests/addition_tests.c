@@ -45,6 +45,6 @@ TCase *addition_tests()
 	TCase *test_case = tcase_create("addition tests");
 	tcase_add_test(test_case, can_add_by_simple_repetition);
 	tcase_add_test(test_case, can_add_by_concatenation);
-	/* PENDING */ (void) addition_is_commutative;
+	tcase_add_test(test_case, addition_is_commutative);
 	return test_case;
 }
