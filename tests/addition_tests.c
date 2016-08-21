@@ -36,6 +36,17 @@ START_TEST(addition_is_commutative)
 {
 	verify_addition("X", "I", "XI");
 	verify_addition("I", "X", "XI");
+
+	verify_addition("VII", "X", "XVII");
+	verify_addition("X", "VII", "XVII");
+}
+END_TEST
+
+START_TEST(adding_smaller_numerals_consolidates_into_larger_numeral)
+{
+	verify_addition("XXX", "XX", "L");
+	verify_addition("D", "D", "M");
+	verify_addition("XXXII", "XXV", "LVII");
 }
 END_TEST
 
@@ -46,5 +57,6 @@ TCase *addition_tests()
 	tcase_add_test(test_case, can_add_by_simple_repetition);
 	tcase_add_test(test_case, can_add_by_concatenation);
 	tcase_add_test(test_case, addition_is_commutative);
+	tcase_add_test(test_case, adding_smaller_numerals_consolidates_into_larger_numeral);
 	return test_case;
 }
