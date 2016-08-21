@@ -24,13 +24,18 @@ static const int ROMAN_LETTERS_LENGTH = sizeof(ROMAN_LETTERS) / sizeof(RomanLett
 char *roman_convert_from_int(const int number)
 {
 	char *result = calloc(2, sizeof(char));
-	if (number < 1) strcat(result, "underflow error");
-	if (3999 < number) strcat(result, "overflow error");
+	if (number < 1) return strcat(result, "underflow error");
+	if (3999 < number) return strcat(result, "overflow error");
 
+	int remainder = number;
 	for (int i = 0; i < ROMAN_LETTERS_LENGTH; i++)
 	{
 		const RomanLetters entry = ROMAN_LETTERS[i];
-		if (number == entry.value) strcat(result, entry.letters);
+		while (remainder >= entry.value)
+		{
+			strcat(result, entry.letters);
+			remainder -= entry.value;
+		}
 	}
 	return result;
 }

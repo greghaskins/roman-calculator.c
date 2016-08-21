@@ -5,6 +5,7 @@
 static void verify_from_int(const int input, const char *expected_result)
 {
 	char *actual_result = roman_convert_from_int(input);
+
 	ck_assert_msg(
 			strcmp(expected_result, actual_result) == 0,
 			"roman from %d:\n expected %s, but got %s",
@@ -21,6 +22,20 @@ START_TEST(can_convert_numbers_with_single_numeral)
 	verify_from_int(100, "C");
 	verify_from_int(500, "D");
 	verify_from_int(1000, "M");
+}
+END_TEST
+
+START_TEST(can_represent_larger_numbers_by_combining_and_repeating)
+{
+	verify_from_int(2, "II");
+	verify_from_int(3, "III");
+	verify_from_int(6, "VI");
+	verify_from_int(8, "VIII");
+	verify_from_int(37, "XXXVII");
+	verify_from_int(580, "DLXXX");
+	verify_from_int(2001, "MMI");
+	verify_from_int(1666, "MDCLXVI");
+	verify_from_int(3888, "MMMDCCCLXXXVIII");
 }
 END_TEST
 
@@ -44,6 +59,7 @@ TCase *conversion_from_int_tests()
 {
 	TCase *test_case = tcase_create("conversion from int");
 	tcase_add_test(test_case, can_convert_numbers_with_single_numeral);
+	tcase_add_test(test_case, can_represent_larger_numbers_by_combining_and_repeating);
 	tcase_add_test(test_case, numbers_less_than_one_are_an_error);
 	tcase_add_test(test_case, numbers_greater_than_maximum_possible_3999_are_an_error);
 	return test_case;
