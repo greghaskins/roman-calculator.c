@@ -19,7 +19,9 @@ static const RomanLetters ROMAN_LETTERS[] = {
 	{ 1, "I" }
 };
 static const int ROMAN_LETTERS_LENGTH = sizeof(ROMAN_LETTERS) / sizeof(RomanLetters);
+static void build_result_from_component_letters(const int number, char *result);
 
+static int append_letters_to_reduce_remainder(RomanLetters entry, int remainder, char *result);
 
 char *roman_convert_from_int(const int number)
 {
@@ -27,15 +29,26 @@ char *roman_convert_from_int(const int number)
 	if (number < 1) return strcat(result, "underflow error");
 	if (3999 < number) return strcat(result, "overflow error");
 
+	build_result_from_component_letters(number, result);
+	return result;
+}
+
+static void build_result_from_component_letters(const int number, char *result)
+{
 	int remainder = number;
 	for (int i = 0; i < ROMAN_LETTERS_LENGTH; i++)
 	{
 		const RomanLetters entry = ROMAN_LETTERS[i];
-		while (remainder >= entry.value)
-		{
-			strcat(result, entry.letters);
-			remainder -= entry.value;
-		}
+		remainder = append_letters_to_reduce_remainder(entry, remainder, result);
 	}
-	return result;
+}
+
+static int append_letters_to_reduce_remainder(RomanLetters entry, int remainder, char *result)
+{
+	while (remainder >= entry.value)
+	{
+		strcat(result, entry.letters);
+		remainder -= entry.value;
+	}
+	return remainder;
 }
