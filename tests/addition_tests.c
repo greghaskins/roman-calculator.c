@@ -50,6 +50,14 @@ START_TEST(adding_smaller_numerals_consolidates_into_larger_numeral)
 }
 END_TEST
 
+START_TEST(uses_shorthand_subtractive_form)
+{
+	verify_addition("IV", "I", "V");
+	verify_addition("XXXI", "IX", "XL");
+	verify_addition("MCMVIII", "CXLI", "MMXLIX");
+}
+END_TEST
+
 START_TEST(reports_errors_from_invalid_input)
 {
 	verify_addition("wat", "I", "invalid input");
@@ -66,5 +74,6 @@ TCase *addition_tests()
 	tcase_add_test(test_case, addition_is_commutative);
 	tcase_add_test(test_case, adding_smaller_numerals_consolidates_into_larger_numeral);
 	tcase_add_test(test_case, reports_errors_from_invalid_input);
+	/* PENDING */ (void) uses_shorthand_subtractive_form;
 	return test_case;
 }
