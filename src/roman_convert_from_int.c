@@ -4,6 +4,8 @@
 
 #include "roman_convert_from_int.h"
 
+static const int MAX_POSSIBLE_LENGTH_OF_NUMERAL = 16;
+
 typedef struct RomanLetters {
 	int value;
 	char letters[3];
@@ -25,7 +27,7 @@ static int append_letters_to_reduce_remainder(RomanLetters entry, int remainder,
 
 char *roman_convert_from_int(const int number)
 {
-	char *result = calloc(2, sizeof(char));
+	char *result = calloc(MAX_POSSIBLE_LENGTH_OF_NUMERAL, sizeof(char));
 	if (number < 1) return strcat(result, "underflow error");
 	if (3999 < number) return strcat(result, "overflow error");
 
