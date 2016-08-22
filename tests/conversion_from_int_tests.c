@@ -39,6 +39,19 @@ START_TEST(can_represent_larger_numbers_by_combining_and_repeating)
 }
 END_TEST
 
+START_TEST(uses_shorthand_subtractive_form_instead_of_repeating_four_times)
+{
+	verify_from_int(4, "IV");
+	verify_from_int(9, "IX");
+	verify_from_int(40, "XL");
+	verify_from_int(90, "XC");
+	verify_from_int(400, "CD");
+	verify_from_int(900, "CM");
+	verify_from_int(444, "CDXLIV");
+	verify_from_int(2999, "MMCMXCIX");
+}
+END_TEST
+
 START_TEST(numbers_less_than_one_are_an_error)
 {
 	verify_from_int(0, "underflow error");
@@ -60,6 +73,7 @@ TCase *conversion_from_int_tests()
 	TCase *test_case = tcase_create("conversion from int");
 	tcase_add_test(test_case, can_convert_numbers_with_single_numeral);
 	tcase_add_test(test_case, can_represent_larger_numbers_by_combining_and_repeating);
+	tcase_add_test(test_case, uses_shorthand_subtractive_form_instead_of_repeating_four_times);
 	tcase_add_test(test_case, numbers_less_than_one_are_an_error);
 	tcase_add_test(test_case, numbers_greater_than_maximum_possible_3999_are_an_error);
 	return test_case;

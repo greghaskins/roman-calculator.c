@@ -13,11 +13,17 @@ typedef struct RomanLetters {
 
 static const RomanLetters ROMAN_LETTERS[] = {
 	{ 1000, "M" },
+	{ 900, "CM" },
 	{ 500, "D" },
+	{ 400, "CD" },
 	{ 100, "C" },
+	{ 90, "XC" },
 	{ 50, "L" },
+	{ 40, "XL" },
 	{ 10, "X" },
+	{ 9, "IX" },
 	{ 5, "V" },
+	{ 4, "IV" },
 	{ 1, "I" }
 };
 static const int ROMAN_LETTERS_LENGTH = sizeof(ROMAN_LETTERS) / sizeof(RomanLetters);
