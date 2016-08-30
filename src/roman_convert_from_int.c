@@ -3,33 +3,13 @@
 #include <string.h>
 
 #include "roman_convert_from_int.h"
+#include "roman_clusters.c"
 
 static const int MAX_POSSIBLE_LENGTH_OF_NUMERAL = 16;
 
-typedef struct RomanLetters {
-	int value;
-	char letters[3];
-} RomanLetters;
+static void build_result_from_component_clusters(const int number, char *result);
 
-static const RomanLetters ROMAN_LETTERS[] = {
-	{ 1000, "M" },
-	{ 900, "CM" },
-	{ 500, "D" },
-	{ 400, "CD" },
-	{ 100, "C" },
-	{ 90, "XC" },
-	{ 50, "L" },
-	{ 40, "XL" },
-	{ 10, "X" },
-	{ 9, "IX" },
-	{ 5, "V" },
-	{ 4, "IV" },
-	{ 1, "I" }
-};
-static const int ROMAN_LETTERS_LENGTH = sizeof(ROMAN_LETTERS) / sizeof(RomanLetters);
-static void build_result_from_component_letters(const int number, char *result);
-
-static int append_letters_to_reduce_remainder(RomanLetters entry, int remainder, char *result);
+static int append_cluster_to_reduce_remainder(RomanCluster cluster, int remainder, char *result);
 
 char *roman_convert_from_int(const int number)
 {
@@ -37,21 +17,21 @@ char *roman_convert_from_int(const int number)
 	if (number < 1) return strcat(result, "underflow error");
 	if (3999 < number) return strcat(result, "overflow error");
 
-	build_result_from_component_letters(number, result);
+	build_result_from_component_clusters(number, result);
 	return result;
 }
 
-static void build_result_from_component_letters(const int number, char *result)
+static void build_result_from_component_clusters(const int number, char *result)
 {
 	int remainder = number;
-	for (int i = 0; i < ROMAN_LETTERS_LENGTH; i++)
+	for (int i = 0; i < ROMAN_CLUSTERS_LENGTH; i++)
 	{
-		const RomanLetters entry = ROMAN_LETTERS[i];
-		remainder = append_letters_to_reduce_remainder(entry, remainder, result);
+		const RomanCluster cluster = ROMAN_CLUSTERS[i];
+		remainder = append_cluster_to_reduce_remainder(cluster, remainder, result);
 	}
 }
 
-static int append_letters_to_reduce_remainder(RomanLetters entry, int remainder, char *result)
+static int append_cluster_to_reduce_remainder(RomanCluster entry, int remainder, char *result)
 {
 	while (remainder >= entry.value)
 	{
