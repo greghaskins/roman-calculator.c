@@ -1,10 +1,12 @@
 #include <string.h>
+#include <stdbool.h>
 
 #include "roman_convert_to_int.h"
 #include "roman_clusters.c"
 
 static const int ERROR = -1;
 
+static bool starts_with(const char *str, RomanCluster cluster);
 
 int roman_convert_to_int(const char *numeral)
 {
@@ -14,14 +16,17 @@ int roman_convert_to_int(const char *numeral)
 	for (int cluster_index = 0; cluster_index < ROMAN_CLUSTERS_LENGTH; cluster_index++)
 	{
 		const RomanCluster cluster = ROMAN_CLUSTERS[cluster_index];
-		const int cluster_length = strlen(cluster.letters);
-		while (strncmp(numeral, cluster.letters, cluster_length) == 0)
+		while (starts_with(numeral, cluster))
 		{
 			total += cluster.value;
-			numeral += cluster_length;
+			numeral += cluster.length;
 		}
 	}
 
 	return *numeral ? ERROR : total;
 }
 
+static bool starts_with(const char *str, RomanCluster cluster)
+{
+	return strncmp(str, cluster.letters, cluster.length) == 0;
+}
