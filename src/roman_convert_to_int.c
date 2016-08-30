@@ -12,12 +12,21 @@ int roman_convert_to_int(const char *numeral)
 
 	const int length = strlen(numeral);
 	int total = 0;
-	for (int i = 0; i < length; i++)
+	int previous_value = 0;
+	for (int i = length - 1; i >= 0; i--)
 	{
 		char letter = numeral[i];
 		int value = letter_to_int(letter);
 		if (value == ERROR) return ERROR;
-		total += letter_to_int(letter);
+		if (previous_value > value)
+		{
+			total -= value;
+		}
+		else
+		{
+			total += value;
+		}
+		previous_value = value;
 	}
 	return total;
 }
