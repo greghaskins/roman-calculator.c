@@ -1,55 +1,27 @@
 #include <string.h>
 
 #include "roman_convert_to_int.h"
+#include "roman_clusters.c"
 
 static const int ERROR = -1;
 
-static int letter_to_int(const char letter);
 
 int roman_convert_to_int(const char *numeral)
 {
 	if (!numeral) return ERROR;
 
-	const int length = strlen(numeral);
 	int total = 0;
-	int previous_value = 0;
-	for (int i = length - 1; i >= 0; i--)
+	for (int cluster_index = 0; cluster_index < ROMAN_CLUSTERS_LENGTH; cluster_index++)
 	{
-		char letter = numeral[i];
-		int value = letter_to_int(letter);
-		if (value == ERROR) return ERROR;
-		if (previous_value > value)
+		const RomanCluster cluster = ROMAN_CLUSTERS[cluster_index];
+		const int cluster_length = strlen(cluster.letters);
+		while (strncmp(numeral, cluster.letters, cluster_length) == 0)
 		{
-			total -= value;
+			total += cluster.value;
+			numeral += cluster_length;
 		}
-		else
-		{
-			total += value;
-		}
-		previous_value = value;
 	}
-	return total;
+
+	return *numeral ? ERROR : total;
 }
 
-static int letter_to_int(const char letter)
-{
-	switch (letter)
-	{
-		case 'I':
-			return 1;
-		case 'V':
-			return 5;
-		case 'X':
-			return 10;
-		case 'L':
-			return 50;
-		case 'C':
-			return 100;
-		case 'D':
-			return 500;
-		case 'M':
-			return 1000;
-		default:
-			return ERROR;
-	}
-}
