@@ -35,3 +35,13 @@ char *sum2 = roman_calculator_add("XXXI", "MXXVI"); // -> "MLVII"
 ```
 
 See [tests/addition_tests.c]() for more detailed examples.
+
+## TODO
+
+- [x] Addition happy cases
+- [x] Handle null input
+- [x] Handle underflow and overflow errors (beyond 3999)
+- [x] Error on bogus characters
+- [x] Subtractive/compressed format input/output (IV, XL, CD, etc.)
+- [ ] Deal with malformed numerals (e.g. `DDD`, `CMCM`, `LLIIII`, `IXIV`)
+- [ ] Subtraction feature (`roman_calculator_subtract`)
