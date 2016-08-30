@@ -74,6 +74,6 @@ TCase *addition_tests()
 	tcase_add_test(test_case, addition_is_commutative);
 	tcase_add_test(test_case, adding_smaller_numerals_consolidates_into_larger_numeral);
 	tcase_add_test(test_case, reports_errors_from_invalid_input);
-	/* PENDING */ (void) uses_shorthand_subtractive_form;
+	tcase_add_test(test_case, uses_shorthand_subtractive_form);
 	return test_case;
 }
