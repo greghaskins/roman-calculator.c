@@ -2,7 +2,7 @@
 #include <stdbool.h>
 
 #include "roman_convert_to_int.h"
-#include "roman_clusters.c"
+#include "roman_clusters.h"
 
 static const int ERROR = -1;
 

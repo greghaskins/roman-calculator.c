@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "roman_convert_from_int.h"
-#include "roman_clusters.c"
+#include "roman_clusters.h"
 
 static const int MAX_POSSIBLE_LENGTH_OF_NUMERAL = 16;
 
