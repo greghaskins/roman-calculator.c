@@ -24,10 +24,11 @@ char *roman_convert_from_int(const int number)
 static void build_result_from_component_clusters(const int number, char *result)
 {
 	int remainder = number;
-	for (int i = 0; i < ROMAN_CLUSTERS_LENGTH; i++)
+	for (const RomanCluster *cluster = roman_cluster_largest();
+			cluster;
+			cluster = roman_cluster_next_smaller(cluster))
 	{
-		const RomanCluster cluster = ROMAN_CLUSTERS[i];
-		remainder = append_cluster_to_reduce_remainder(cluster, remainder, result);
+		remainder = append_cluster_to_reduce_remainder(*cluster, remainder, result);
 	}
 }
 

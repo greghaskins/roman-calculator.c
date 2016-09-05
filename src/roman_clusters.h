@@ -24,4 +24,7 @@ static const RomanCluster ROMAN_CLUSTERS[] = {
 };
 static const int ROMAN_CLUSTERS_LENGTH = sizeof(ROMAN_CLUSTERS) / sizeof(RomanCluster);
 
+extern const RomanCluster *roman_cluster_largest(void);
+extern const RomanCluster *roman_cluster_next_smaller(const RomanCluster *cluster);
+
 #endif
