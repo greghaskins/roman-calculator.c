@@ -13,13 +13,15 @@ int roman_convert_to_int(const char *numeral)
 	if (!numeral) return ERROR;
 
 	int total = 0;
-	for (int cluster_index = 0; cluster_index < ROMAN_CLUSTERS_LENGTH; cluster_index++)
+	for (const RomanCluster *cluster = roman_cluster_largest();
+			cluster;
+			cluster = roman_cluster_next_smaller(cluster)
+	    )
 	{
-		const RomanCluster cluster = ROMAN_CLUSTERS[cluster_index];
-		while (starts_with(numeral, cluster))
+		while (starts_with(numeral, *cluster))
 		{
-			total += cluster.value;
-			numeral += cluster.length;
+			total += cluster->value;
+			numeral += cluster->length;
 		}
 	}
 
