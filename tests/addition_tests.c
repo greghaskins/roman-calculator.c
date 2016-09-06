@@ -66,6 +66,12 @@ START_TEST(reports_errors_from_invalid_input)
 }
 END_TEST
 
+START_TEST(reports_errors_when_result_is_too_big_for_roman_range)
+{
+	verify_addition("MMM", "MMM", "overflow error");
+	verify_addition("MMMCMXCIX", "I", "overflow error");
+}
+END_TEST
 
 TCase *addition_tests()
 {
@@ -76,5 +82,6 @@ TCase *addition_tests()
 	tcase_add_test(test_case, adding_smaller_numerals_consolidates_into_larger_numeral);
 	tcase_add_test(test_case, reports_errors_from_invalid_input);
 	tcase_add_test(test_case, uses_shorthand_subtractive_form);
+	tcase_add_test(test_case, reports_errors_when_result_is_too_big_for_roman_range);
 	return test_case;
 }
