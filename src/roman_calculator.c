@@ -25,25 +25,12 @@ char *roman_calculator_add(const char *left, const char *right)
 
 char *roman_calculator_subtract(const char *minuend, const char *subtrahend)
 {
-	char *result = strdup(minuend);
-	const char *remaining_subtrahend = subtrahend;
-	for (const char *letter = subtrahend; *letter; letter++)
-	{
-		char *match;
-		if((match = strchr(result, *letter)))
-		{
-			memmove(match, match + 1, 1 + strlen(match  + 1));
-			remaining_subtrahend += 1;
-		}
-	}
-	if (strlen(remaining_subtrahend) == 0)
-		return result;
+	int minuend_value = roman_convert_to_int(minuend);
+	int subtrahend_value = roman_convert_to_int(subtrahend);
 
-	free(result);
-	result = calloc(sizeof(char), 16);
-	strcat(result, subtrahend);
-	strcat(result, minuend);
+	int difference = minuend_value - subtrahend_value;
 
+	char *result = roman_convert_from_int(difference);
 	return result;
 }
 

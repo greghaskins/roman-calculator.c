@@ -35,10 +35,21 @@ START_TEST(can_subtract_by_prefixing)
 }
 END_TEST
 
+START_TEST(can_subtract_when_result_isnt_directly_composed_of_inputs)
+{
+	verify_subtraction("C", "XXX", "LXX");
+	verify_subtraction("X", "V", "V");
+	verify_subtraction("MCX", "DLV", "DLV");
+	verify_subtraction("M", "IV", "CMXCVI");
+	verify_subtraction("MDXXIV", "CXLIV", "MCCCLXXX");
+}
+END_TEST
+
 TCase *subtraction_tests(void)
 {
 	TCase *test_case = tcase_create("subtraction tests");	
 	tcase_add_test(test_case, can_subtract_by_removing_letters);
 	tcase_add_test(test_case, can_subtract_by_prefixing);
+	tcase_add_test(test_case, can_subtract_when_result_isnt_directly_composed_of_inputs);
 	return test_case;
 }
