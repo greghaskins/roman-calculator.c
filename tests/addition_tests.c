@@ -1,9 +1,9 @@
 #include <stdlib.h>
-#include <check.h>
 
+#include "addition_tests.h"
 #include "../src/roman_calculator.h"
 
-void verify_addition(const char *left, const char *right, const char *expected_result) {
+static void verify_addition(const char *left, const char *right, const char *expected_result) {
 	char *actual_result = roman_calculator_add(left, right);
 	ck_assert_msg(
 			strcmp(expected_result, actual_result) == 0,

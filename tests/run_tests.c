@@ -1,6 +1,6 @@
 #include <check.h>
 
-#include "addition_tests.c"
+#include "addition_tests.h"
 #include "subtraction_tests.h"
 #include "conversion_to_int_tests.c"
 #include "conversion_from_int_tests.c"

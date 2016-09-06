@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <check.h>
 
 #include "../src/roman_convert_from_int.h"
