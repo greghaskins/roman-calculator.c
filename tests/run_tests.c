@@ -2,7 +2,7 @@
 
 #include "addition_tests.h"
 #include "subtraction_tests.h"
-#include "conversion_to_int_tests.c"
+#include "conversion_to_int_tests.h"
 #include "conversion_from_int_tests.h"
 
 int main(void)

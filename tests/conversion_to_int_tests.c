@@ -1,5 +1,4 @@
-#include <check.h>
-
+#include "conversion_to_int_tests.h"
 #include "../src/roman_convert_to_int.h"
 
 START_TEST(can_convert_single_numerals)
