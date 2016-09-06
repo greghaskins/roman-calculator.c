@@ -45,11 +45,20 @@ START_TEST(can_subtract_when_result_isnt_directly_composed_of_inputs)
 }
 END_TEST
 
+START_TEST(reports_underflow_errors_below_roman_range)
+{
+	verify_subtraction("I", "I", "underflow error");
+	verify_subtraction("XIV", "MMCL", "underflow error");
+}
+END_TEST
+
+
 TCase *subtraction_tests(void)
 {
 	TCase *test_case = tcase_create("subtraction tests");	
 	tcase_add_test(test_case, can_subtract_by_removing_letters);
 	tcase_add_test(test_case, can_subtract_by_prefixing);
 	tcase_add_test(test_case, can_subtract_when_result_isnt_directly_composed_of_inputs);
+	tcase_add_test(test_case, reports_underflow_errors_below_roman_range);
 	return test_case;
 }
