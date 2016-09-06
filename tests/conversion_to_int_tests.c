@@ -50,6 +50,17 @@ START_TEST(unknown_characters_anywhere_are_an_error_so_return_minus_one)
 }
 END_TEST
 
+START_TEST(semantically_invalid_numerals_are_an_error_so_return_minus_one)
+{
+	ck_assert_int_eq(roman_convert_to_int("VV"), -1);
+	ck_assert_int_eq(roman_convert_to_int("VIV"), -1);
+	ck_assert_int_eq(roman_convert_to_int("DDD"), -1);
+	ck_assert_int_eq(roman_convert_to_int("CMCM"), -1);
+	ck_assert_int_eq(roman_convert_to_int("LLIIII"), -1);
+	ck_assert_int_eq(roman_convert_to_int("IXIV"), -1);
+	ck_assert_int_eq(roman_convert_to_int("XIXIVIII"), -1);
+}
+END_TEST
 
 TCase *conversion_to_int_tests()
 {
@@ -59,5 +70,6 @@ TCase *conversion_to_int_tests()
 	tcase_add_test(test_case, can_understand_shorthand_subtractive_form);
 	tcase_add_test(test_case, null_string_is_an_error_so_return_minus_one);
 	tcase_add_test(test_case, unknown_characters_anywhere_are_an_error_so_return_minus_one);
+	tcase_add_test(test_case, semantically_invalid_numerals_are_an_error_so_return_minus_one);
 	return test_case;
 }

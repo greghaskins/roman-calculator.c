@@ -62,6 +62,7 @@ START_TEST(reports_errors_from_invalid_input)
 {
 	verify_addition("wat", "I", "invalid input");
 	verify_addition("XVI", "$%7", "invalid input");
+	verify_addition("CDCDDIVIX", "L", "invalid input");
 }
 END_TEST
 
