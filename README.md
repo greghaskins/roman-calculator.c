@@ -32,9 +32,12 @@ The `roman_calculator` library provides a way to add roman numerals together. In
 
 char *sum1 = roman_calculator_add("I", "I"); // -> "II"
 char *sum2 = roman_calculator_add("XXXI", "MXXVI"); // -> "MLVII"
+
+char *difference1 = roman_calculator_subtract("DCIX", "CII"); // -> "DVII"
+char *difference2 = roman_calculator_subtract("MMXLV", "DXI"); // -> "MDXXXIV"
 ```
 
-See [tests/addition_tests.c]() for more detailed examples.
+See [tests/addition_tests.c](./tests/addition_tests.c) and [tests/subtraction_tests.c](./tests/subtraction_tests.c) for more detailed examples.
 
 ## TODO
 
@@ -44,4 +47,4 @@ See [tests/addition_tests.c]() for more detailed examples.
 - [x] Error on bogus characters
 - [x] Subtractive/compressed format input/output (IV, XL, CD, etc.)
 - [x] Deal with malformed numerals (e.g. `DDD`, `CMCM`, `LLIIII`, `IXIV`)
-- [ ] Subtraction feature (`roman_calculator_subtract`)
+- [x] Subtraction feature (`roman_calculator_subtract`)
