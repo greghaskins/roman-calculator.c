@@ -1,6 +1,6 @@
 #include <stdlib.h>
-#include <check.h>
 
+#include "conversion_from_int_tests.h"
 #include "../src/roman_convert_from_int.h"
 
 static void verify_from_int(const int input, const char *expected_result)
