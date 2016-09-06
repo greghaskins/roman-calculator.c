@@ -52,6 +52,15 @@ START_TEST(reports_underflow_errors_below_roman_range)
 }
 END_TEST
 
+START_TEST(reports_errors_from_invalid_input)
+{
+	verify_subtraction("huh", "I", "invalid input");
+	verify_subtraction("MCI", "&0AB", "invalid input");
+	verify_subtraction("DDD", "IV", "invalid input");
+	verify_subtraction("M", "IVMCXL", "invalid input");
+}
+END_TEST
+
 
 TCase *subtraction_tests(void)
 {
@@ -60,5 +69,6 @@ TCase *subtraction_tests(void)
 	tcase_add_test(test_case, can_subtract_by_prefixing);
 	tcase_add_test(test_case, can_subtract_when_result_isnt_directly_composed_of_inputs);
 	tcase_add_test(test_case, reports_underflow_errors_below_roman_range);
+	tcase_add_test(test_case, reports_errors_from_invalid_input);
 	return test_case;
 }

@@ -28,6 +28,9 @@ char *roman_calculator_subtract(const char *minuend, const char *subtrahend)
 	int minuend_value = roman_convert_to_int(minuend);
 	int subtrahend_value = roman_convert_to_int(subtrahend);
 
+	if (minuend_value == ERROR || subtrahend_value == ERROR)
+		return strdup("invalid input");
+
 	int difference = minuend_value - subtrahend_value;
 
 	char *result = roman_convert_from_int(difference);
