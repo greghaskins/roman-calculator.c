@@ -15,6 +15,12 @@ static void verify_subtraction(const char *minuend, const char *subtrahend, cons
 START_TEST(can_subtract_by_removing_letters)
 {
 	verify_subtraction("II", "I", "I");
+	verify_subtraction("III", "I", "II");
+	verify_subtraction("XXX", "XX", "X");
+	verify_subtraction("XLV", "V", "XL");
+	verify_subtraction("MDIV", "D", "MIV");
+	verify_subtraction("MMLXI", "MI", "MLX");
+	verify_subtraction("MMDCCLXXVII", "DLV", "MMCCXXII");
 }
 END_TEST
 

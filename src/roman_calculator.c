@@ -23,9 +23,18 @@ char *roman_calculator_add(const char *left, const char *right)
 	return result;
 }
 
-char *roman_calculator_subtract(__attribute__((unused)) const char *minuend, __attribute__((unused)) const char *subtrahend)
+char *roman_calculator_subtract(const char *minuend, const char *subtrahend)
 {
-	return strdup("I");
+	char *result = strdup(minuend);
+	for (const char *letter = subtrahend; *letter; letter++)
+	{
+		char *match;
+		if((match = strchr(result, *letter)))
+		{
+			memmove(match, match + 1, 1 + strlen(match  + 1));
+		}
+	}
+	return result;
 }
 
 static char *strdup(const char *source)
