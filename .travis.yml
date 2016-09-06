@@ -7,4 +7,5 @@ addons:
                         - check
                         - valgrind
 after_success:
+        - find src/ tests/ -type f | grep -i -e gcno$ -e gcda$ | xargs -i mv {} .
         - bash <(curl -s https://codecov.io/bash)
