@@ -43,5 +43,5 @@ See [tests/addition_tests.c]() for more detailed examples.
 - [x] Handle underflow and overflow errors (beyond 3999)
 - [x] Error on bogus characters
 - [x] Subtractive/compressed format input/output (IV, XL, CD, etc.)
-- [ ] Deal with malformed numerals (e.g. `DDD`, `CMCM`, `LLIIII`, `IXIV`)
+- [x] Deal with malformed numerals (e.g. `DDD`, `CMCM`, `LLIIII`, `IXIV`)
 - [ ] Subtraction feature (`roman_calculator_subtract`)
