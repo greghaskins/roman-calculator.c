@@ -1,4 +1,4 @@
-OBJECTS = roman_calculator.o roman_convert_to_int.o roman_convert_from_int.o roman_clusters.o
+OBJECTS = $(patsubst %.h,%.o,$(wildcard */*.h))
 CFLAGS = -Wall -Wextra -std=c99 -pedantic -Werror -O0
 CHECK_LIBS = -pthread -lcheck_pic -lrt -lm
 
@@ -13,7 +13,7 @@ valgrind: compile_tests
 compile_tests: ${CURDIR}/tests/run_tests.c $(OBJECTS)
 	gcc $(CFLAGS) -MMD -coverage -o run_tests $< $(CHECK_LIBS) $(OBJECTS)
 
-%.o: ${CURDIR}/src/%.c
+%.o: ${CURDIR}/%.c
 	gcc $(CFLAGS) -MMD -coverage -o $@ -c $<
 
 -include *.d
