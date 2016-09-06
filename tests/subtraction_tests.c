@@ -24,9 +24,21 @@ START_TEST(can_subtract_by_removing_letters)
 }
 END_TEST
 
+START_TEST(can_subtract_by_prefixing)
+{
+	verify_subtraction("V", "I", "IV");
+	verify_subtraction("X", "I", "IX");
+	verify_subtraction("L", "X", "XL");
+	verify_subtraction("C", "X", "XC");
+	verify_subtraction("D", "C", "CD");
+	verify_subtraction("M", "C", "CM");
+}
+END_TEST
+
 TCase *subtraction_tests(void)
 {
 	TCase *test_case = tcase_create("subtraction tests");	
 	tcase_add_test(test_case, can_subtract_by_removing_letters);
+	tcase_add_test(test_case, can_subtract_by_prefixing);
 	return test_case;
 }
