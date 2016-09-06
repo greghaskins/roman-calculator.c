@@ -8,6 +8,7 @@
 
 static const int ERROR = -1;
 
+static int sum_of_cluster_values(const char *numeral);
 static bool starts_with(const char *str, RomanCluster cluster);
 static bool converts_back_to_same_numeral(int value, const char *expected_numeral);
 
@@ -15,7 +16,14 @@ int roman_convert_to_int(const char *numeral)
 {
 	if (!numeral) return ERROR;
 
-	const char *original_numeral = numeral;
+	const int value = sum_of_cluster_values(numeral);
+	const bool valid_input = converts_back_to_same_numeral(value, numeral);
+
+	return valid_input ? value : ERROR;
+}
+
+static int sum_of_cluster_values(const char *numeral)
+{
 	int total = 0;
 	for (const RomanCluster *cluster = roman_cluster_largest();
 			cluster;
@@ -28,12 +36,7 @@ int roman_convert_to_int(const char *numeral)
 			numeral += cluster->length;
 		}
 	}
-
-	if (converts_back_to_same_numeral(total, original_numeral))
-	{
-		return total;
-	}
-	return ERROR;
+	return total;
 }
 
 static bool starts_with(const char *str, RomanCluster cluster)
@@ -43,8 +46,8 @@ static bool starts_with(const char *str, RomanCluster cluster)
 
 static bool converts_back_to_same_numeral(int value, const char *expected_numeral)
 {
-	char *numeral = roman_convert_from_int(value);
-	bool equal = strcmp(numeral, expected_numeral) == 0;
-	free(numeral);
-	return equal;
+	char *converted_numeral = roman_convert_from_int(value);
+	bool result = strcmp(converted_numeral, expected_numeral) == 0;
+	free(converted_numeral);
+	return result;
 }
